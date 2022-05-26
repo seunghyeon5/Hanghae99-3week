@@ -12,7 +12,7 @@ router.get("/board", async (req, res) => { // 게시글 목록조회
 router.post("/board", async(req, res) => { //게시글 작성
     const { title, name, Password, content, Date, articleId} = req.body; 
     const article = await Article.find({ articleId });
-    if (article.length) {
+    if (article.length) { // 이미 있는경우 에러메세지 추가
         return res.status(400).json({ success: false, errorMesssage: "이미 있는 데이터입니다." });
       }
     const createdArticle = await Article.create({ title, name, Password, content, Date, articleId });
@@ -22,7 +22,7 @@ router.post("/board", async(req, res) => { //게시글 작성
 
 router.get("/board/:articleId", async(req, res) => { // 게시글 조회
     const { articleId } = req.params;
-    const [ detail ] = await Article.find({ articleId: Number(articleId) });
+    const [ detail ] = await Article.find({ articleId: Number(articleId) }); //작성자아이디를 넘버를 이용해서 게시글 조회
     
     res.status(200).json({
       detail,
@@ -33,7 +33,7 @@ router.put("/board/:articleId/update", async(req, res) => { //게시글 수정
     const { articleId } = req.params;
     const { Password, title, content, name } = req.body;
     const updateArticle = await Article.find({ articleId:Number(articleId) });
-    if (Password === updateArticle[0].Password) {
+    if (Password === updateArticle[0].Password) { // 돌려서 비밀번호 같은 경우 업데이트
         await Article.updateOne({ articleId : Number(articleId) }, { $set: {title, content, name} });
     };
 
@@ -43,7 +43,7 @@ router.put("/board/:articleId/update", async(req, res) => { //게시글 수정
 router.delete("/board/:articleId/delete", async(req, res) => { //게시글 삭제
     const { articleId  } = req.params;
     const { Password, title, content, name } = req.body;
-    const deleteArticle = await Article.find({ articleId: Number(articleId) });
+    const deleteArticle = await Article.find({ articleId: Number(articleId) }); // 돌려서 비밀번호 같은경우 삭제
     if (Password === deleteArticle[0].Password) {
         await Article.deleteOne({ articleId : Number(articleId) });
     }
