@@ -37,7 +37,7 @@ router.put("/board/:articleId/update", async(req, res) => { //게시글 수정
         await Article.updateOne({ articleId : Number(articleId) }, { $set: {title, content, name} });
     };
 
-    res.json({ success: true });
+    res.status(201).json({ success: true });
 })
 
 router.delete("/board/:articleId/delete", async(req, res) => { //게시글 삭제
@@ -48,7 +48,7 @@ router.delete("/board/:articleId/delete", async(req, res) => { //게시글 삭�
         await Article.deleteOne({ articleId : Number(articleId) });
     }
 
-    res.json({ success : true });
+    res.status(200).json({ success : true });
 });
 
 module.exports = router;
