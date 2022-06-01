@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../schemas/user");
+const { User } = require("../models");
 
 module.exports = (req, res, next) => {
     try {
@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
     }
         const { userId } = jwt.verify(tokenValue, "4week-secret-key"); //decoded가 제대로된 값
 
-        User.findById(userId).exec().then((user) => {
+        User.findByPk(userId).then((user) => {
             res.locals.user = user;
             next();
         });

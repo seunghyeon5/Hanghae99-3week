@@ -5,15 +5,16 @@
     "express.js": "^1.0.0",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.3.4",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.20.1"
+    "sequelize": "^6.20.1",
+    "socket.io": "^4.5.1"
   },
   "name": "np",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,8 +27,8 @@
     "url": "https://github.com/seunghyeon5/Hanghae99-3week/issues"
   },
   "homepage": "https://github.com/seunghyeon5/Hanghae99-3week#readme",
-  "description": "",
   "devDependencies": {
     "sequelize-cli": "^6.4.1"
-  }
+  },
+  "description": ""
 }
