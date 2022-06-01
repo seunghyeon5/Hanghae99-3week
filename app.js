@@ -3,6 +3,8 @@ const connect = require("./schemas")
 const cors = require("cors") // cors 패키지 적용
 const app = express();
 const port = 3000;
+const router = express.Router();
+const authMiddleware = require("./middlewares/auth-middleware");
 
 connect();
 
@@ -13,6 +15,12 @@ const requestMiddleware = (req, res, next) => {
     next();
 };
 
+router.get("/users/me", authMiddleware, async(req, res) => {
+    const { user } = res.locals;
+    res.send({
+        user,
+    });
+})
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(requestMiddleware)

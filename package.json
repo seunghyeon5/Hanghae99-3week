@@ -1,18 +1,33 @@
 {
   "dependencies": {
+    "auth-middleware": "^1.0.0",
     "cors": "^2.8.5",
     "express.js": "^1.0.0",
-    "mongoose": "^6.3.4"
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.4",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.20.1"
   },
-  "name": "articles",
+  "name": "np",
   "version": "1.0.0",
   "main": "app.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "keywords": [],
-  "description": ""
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seunghyeon5/Hanghae99-3week.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seunghyeon5/Hanghae99-3week/issues"
+  },
+  "homepage": "https://github.com/seunghyeon5/Hanghae99-3week#readme",
+  "description": "",
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
+  }
 }
