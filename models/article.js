@@ -1,31 +1,21 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class article extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  }
-  article.init({
-    articleId: { //프라이머리키
-      primaryKey: true,
-      type: DataTypes.INTEGER,
+const mongoose = require('mongoose');
+
+const ArticleSchema = mongoose.Schema(
+    {
+        title: String,
+        content: String,
+        authorId: String,
+        articleNum: String,
     },
-    Password: DataTypes.STRING,
-    title: DataTypes.STRING,
-    content: DataTypes.STRING,
-    Date: DataTypes.DATE,
-    name: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'article',
-  });
-  return Article;
-};
+    { timestamps: true }
+);
+
+ArticleSchema.virtual('articleId').get(function () {
+    return this._id.toHexString(); //id가서와서 tohexstring으로 해야 정상적으로 동작
+});
+
+ArticleSchema.set('toJSON', {
+    virtuals: true,
+});
+
+module.exports = mongoose.model('Article', ArticleSchema);
